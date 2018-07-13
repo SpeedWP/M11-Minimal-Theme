@@ -1,0 +1,252 @@
+﻿# Website Preloader für Wordpress Blogs
+
+1. Füge den unten stehenden Code in die `header.php` deines Themes ein und zwar direkt unter den `</head>` Tag.
+2. Die Farben des Preloaders kann an den eigenen Blog angepasst werden. Ändere den Background im Div `#preloader`
+und die Farbe des Prelaoders im `loader>div`. Beide Einträge findest du im Code unten, innerhalb der Style-Tags.
+
+## Preloader ohne jQuery
+
+### CSS
+
+```css
+#preloader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #fff;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100%;
+	z-index: 99;
+}
+
+#status {
+	width: 50px;
+	height: 30px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin: -25px 0 0 -25px;
+}
+
+.loader {
+	margin: 0px auto;
+	width: 50px;
+	height: 30px;
+	text-align: center;
+	font-size: 10px;
+}
+
+.loader>div {
+	background-color: #000;
+	height: 100%;
+	width: 6px;
+	display: inline-block;
+	-webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+	animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.loader .block2 {
+	-webkit-animation-delay: -1.1s;
+	animation-delay: -1.1s;
+}
+
+.loader .block3 {
+	-webkit-animation-delay: -1.0s;
+	animation-delay: -1.0s;
+}
+
+.loader .block4 {
+	-webkit-animation-delay: -0.9s;
+	animation-delay: -0.9s;
+}
+
+.loader .block5 {
+	-webkit-animation-delay: -0.8s;
+	animation-delay: -0.8s;
+}
+
+@-webkit-keyframes stretchdelay {
+	0%,
+	40%,
+	100% {
+		-webkit-transform: scaleY(0.4)
+	}
+	20% {
+		-webkit-transform: scaleY(1.0)
+	}
+}
+
+@keyframes stretchdelay {
+	0%,
+	40%,
+	100% {
+		transform: scaleY(0.4);
+		-webkit-transform: scaleY(0.4);
+	}
+	20% {
+		transform: scaleY(1.0);
+		-webkit-transform: scaleY(1.0);
+	}
+}
+```
+
+### JavaScript
+
+```javascript
+var interval = setInterval(function () {
+	if (document.readyState === "complete") {
+		document.getElementById("preloader").style.opacity = "0";
+		document.getElementById("preloader").style.transition = ".5s";
+		document.getElementById("preloader").style.visibility = "hidden"
+	}
+}, 350);
+```
+
+### HTML
+
+```html
+<div id="preloader">
+   <div id="status">
+      <div class="loader">
+         <div class="block1"></div>
+         <div class="block2"></div>
+         <div class="block3"></div>
+         <div class="block4"></div>
+         <div class="block5"></div>
+      </div>
+   </div>
+</div>
+```
+
+
+## Preloader mit jQuery
+
+### HTML
+
+In `<head></head>` einfügen.
+
+
+```html
+
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+```
+Nach `<body>` einfügen.
+
+```html
+<div id="preloader">
+   <div id="status">
+      <div class="loader">
+         <div class="block1"></div>
+         <div class="block2"></div>
+         <div class="block3"></div>
+         <div class="block4"></div>
+         <div class="block5"></div>
+      </div>
+   </div>
+</div>
+```
+
+### CSS
+
+```css
+#preloader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #fff;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100%;
+	z-index: 99;
+}
+
+#status {
+	width: 50px;
+	height: 30px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin: -25px 0 0 -25px;
+}
+
+.loader {
+	margin: 0px auto;
+	width: 50px;
+	height: 30px;
+	text-align: center;
+	font-size: 10px;
+}
+
+.loader>div {
+	background-color: #000;
+	height: 100%;
+	width: 6px;
+	display: inline-block;
+	-webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+	animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.loader .block2 {
+	-webkit-animation-delay: -1.1s;
+	animation-delay: -1.1s;
+}
+
+.loader .block3 {
+	-webkit-animation-delay: -1.0s;
+	animation-delay: -1.0s;
+}
+
+.loader .block4 {
+	-webkit-animation-delay: -0.9s;
+	animation-delay: -0.9s;
+}
+
+.loader .block5 {
+	-webkit-animation-delay: -0.8s;
+	animation-delay: -0.8s;
+}
+
+@-webkit-keyframes stretchdelay {
+	0%,
+	40%,
+	100% {
+		-webkit-transform: scaleY(0.4)
+	}
+	20% {
+		-webkit-transform: scaleY(1.0)
+	}
+}
+
+@keyframes stretchdelay {
+	0%,
+	40%,
+	100% {
+		transform: scaleY(0.4);
+		-webkit-transform: scaleY(0.4);
+	}
+	20% {
+		transform: scaleY(1.0);
+		-webkit-transform: scaleY(1.0);
+	}
+}
+```
+
+### JavaScript
+
+
+```javascript
+$(window).load(function () {
+	$('#preloader').fadeOut();
+});
+```
